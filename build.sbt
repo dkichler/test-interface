@@ -2,11 +2,11 @@ name := "test-interface"
 
 organization := "org.scala-sbt"
 
-version := "1.0"
+version := "2.0"
 
 description := "Uniform test interface to Scala/Java test frameworks (specs, ScalaCheck, ScalaTest, JUnit and other)"
 
-scalaVersion := "2.10.2"
+scalaVersion := "2.11.11"
 
 // disable using the Scala version in output paths and artifacts
 crossPaths := false
@@ -17,13 +17,14 @@ resolvers ++= Seq("releases" at "http://oss.sonatype.org/content/repositories/re
                   "snapshots" at "http://oss.sonatype.org/content/repositories/snapshots",
                   "localmaven" at "file://"+Path.userHome+"/.m2/repository")
 
-publishTo <<= version { v: String =>
-  val nexus = "https://oss.sonatype.org/"
-  if (v.trim.endsWith("SNAPSHOT")) Some("publish-snapshots" at nexus + "content/repositories/snapshots")
-  else                             Some("publish-releases" at nexus + "service/local/staging/deploy/maven2")
-}
+//publishTo <<= version { v: String =>
+//  val nexus = "https://oss.sonatype.org/"
+//  if (v.trim.endsWith("SNAPSHOT")) Some("publish-snapshots" at nexus + "content/repositories/snapshots")
+//  else                             Some("publish-releases" at nexus + "service/local/staging/deploy/maven2")
+//}
 
-libraryDependencies += "org.scalatest" % "scalatest_2.10" % "2.0.M6-SNAP24" % "test"
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.8"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.8" % "test"
 
 publishMavenStyle := true
 
